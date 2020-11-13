@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div id="container">
+            <h1>This is a MediaQuery Laboratory</h1>
+            <div className="forms-container">
+                <div className="forms first">
+
+                </div>
+                <div className="forms second">
+
+                </div>
+                <div className="forms third">
+
+                </div>
+            </div>
+            <div className="forms-container vertical">
+                <div className="dynamic-form">
+
+                </div>
+            </div>
+            <span className="mquery" />
+        </div>
     </div>
   );
 }

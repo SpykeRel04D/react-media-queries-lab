@@ -1,0 +1,168 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+$font_01: 'Roboto', sans-serif;
+
+$color_01: rgb(153, 193, 229);
+
+
+$maxwidth: 960px;
+$large-maxwidth: 1300px;
+
+// RWD breaks
+$break-small: 600px;
+$break-medium: 768px;
+$break-large: 992px;
+$break-extra-large: 1200px;
+
+@mixin rwd($media) {
+    @if $media == mobile {
+        @media only screen and (max-width: $break-small) { @content; }
+    }
+    @else if $media == tablet {
+        @media only screen and (min-width: $break-small + 1) and (max-width: $break-medium - 1) { @content; }
+    }
+    @else if $media == portable-devices {
+        @media only screen and (max-width: $break-medium - 1) { @content; }
+    }
+    @else if $media == small-desktop {
+        @media only screen and (min-width: $break-medium + 1) and (max-width: $break-large - 1) { @content; }
+    }
+    @else if $media == desktop {
+        @media only screen and (min-width: $break-large + 1) and (max-width: $break-extra-large - 1) { @content; }
+    }
+    @else if $media == large-desktop {
+        @media only screen and (min-width: $break-extra-large) { @content; }
+    }
+    @else if $media == all-desktop {
+        @media only screen and (min-width: $break-medium + 1) { @content; }
+    }
+}
+
+html, body, #root, .App {
+    height: 100%;
+    background-color:white;
+    margin: 0;
+}
+
+body {
+    font-family: $font_01;
+    display: flex;
+    flex-direction: column;
+}
+
+.App {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+
+#container {
+    background-color: $color_01;
+    border-radius: 10px;
+    border: 3px solid black;
+    width: 35%;
+    height: 60%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .forms-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 95%;
+        height: 30%;
+
+        .forms {
+            width: 100%;
+            border-radius: 50%;
+            margin: 10px;
+        }
+
+        .first {
+            background-color: yellow;
+            border: 1px solid black;
+        }
+
+        .second {
+            background-color: black;
+            border: 1px solid white;
+        }
+
+        .third {
+            background-color: green;
+            border: 1px solid black;
+        }
+
+        @include rwd(portable-devices) { 
+            .first {
+                background-color: orange;
+                border: 1px solid black;
+            }
+    
+            .second {
+                background-color: purple;
+                border: 1px solid white;
+            }
+    
+            .third {
+                background-color: gold;
+                border: 1px solid black;
+            }
+        }
+
+        .dynamic-form {
+            margin-top: 10px;
+            background-color: red;
+            width: 25%;
+
+            @include rwd(portable-devices) { 
+                background-color: darkblue;
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                padding-bottom: 100%;
+            }
+        }
+    }
+    
+    .vertical {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mquery {
+        margin-top: 10%;
+        font-size: 2rem;
+        font-weight: bold;
+
+        &:before {
+            @include rwd(large-desktop) { content: "large-desktop"; }
+            @include rwd(desktop) { content: "desktop"; }
+            @include rwd(small-desktop) { content: "small-desktop"; }
+            @include rwd(tablet) { content: "tablet"; }
+            @include rwd(mobile) { content: "mobile"; }
+        }
+        
+    }
+
+    @include rwd(portable-devices) { 
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+        border: 0;
+        background-color: greenyellow;
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+}
